@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.olympiacircuits"
+	android:versionCode="2"
+	android:versionName=""
+	android:installLocation="internalOnly">
+	
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="19"/>
+	<supports-screens android:largeScreens="true" 
+	    android:normalScreens="true" 
+	    android:smallScreens="true" 
+	    android:anyDensity="true"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.BLUETOOTH"/>
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<application
+		android:icon="@drawable/icon"
+		android:label="OC Cell Logger"
+		android:theme="@android:style/Theme.Holo"
+		android:screenOrientation="landscape">
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name=".main"
+			android:label="OC Cell Logger"
+			android:screenOrientation="landscape">
+			<intent-filter>
+			   <action android:name="android.intent.action.MAIN" />
+			   <category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			
+		</activity>
+		<service android:name=".bt_interact">
+		</service>
+		<receiver android:name=".bt_interact$bt_interact_BR">
+		</receiver>
+		<service android:name=".activity_db">
+		</service>
+		<receiver android:name=".activity_db$activity_db_BR">
+		</receiver>
+		<service android:name=".file_manager">
+		</service>
+		<receiver android:name=".file_manager$file_manager_BR">
+		</receiver>
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name=".camera_activity"
+			android:label="OC Cell Logger"
+			android:screenOrientation="landscape">
+		</activity>
+		<service android:name=".main_controller">
+		</service>
+		<receiver android:name=".main_controller$main_controller_BR">
+		</receiver>
+		<service android:name="anywheresoftware.b4a.samples.gmailcontacts.httputils2service">
+		</service>
+		<receiver android:name="anywheresoftware.b4a.samples.gmailcontacts.httputils2service$httputils2service_BR">
+		</receiver>
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name="anywheresoftware.b4a.samples.gmailcontacts.modrequest"
+			android:label="OC Cell Logger"
+			android:screenOrientation="landscape">
+		</activity>
+		<service android:name="anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring">
+		</service>
+		<receiver android:name="anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring$svcmonitoring_BR">
+		</receiver>
+	</application>
+</manifest>
