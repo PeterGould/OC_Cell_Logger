@@ -50,7 +50,6 @@ Sub connectBT
 	listBLEDevicesName.clear	
 	listBLEDevicesMacAdress.clear	
 	Log("Searching devices...")	
-	ToastMessageShow( "Searching devices..." ,True)
 End Sub
 
 Sub ble_DeviceFound (Name As String, MacAddress As String)

@@ -1,20 +1,25 @@
 ﻿Version=5.2
-NumberOfModules=8
+NumberOfModules=10
 Module1=bt_interact
 Module2=activity_db
 Module3=file_manager
 Module4=auto_camera
-Module5=CameraExClass
-Module6=bt_controller
-Module7=camera_activity
-Module8=main_controller
+Module5=camera_activity
+Module6=main_controller
+Module7=setup
+Module8=CustomListView
+Module9=CameraExClass
+Module10=bt_controller
 Build1=Default,com.olympiacircuits
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'set orientation~\n~SetApplicationAttribute("android:screenOrientation", "landscape")~\n~'End of default text.
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="19"/>~\n~<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'set orientation~\n~SetApplicationAttribute("android:screenOrientation", "landscape")~\n~'End of default text.~\n~
 IconFile=
-NumberOfFiles=2
-File1=Layout1.bal
-File2=logger_layout.bal
-NumberOfLibraries=17
+NumberOfFiles=5
+File1=error.png
+File2=Layout1.bal
+File3=logger_layout.bal
+File4=O_Icon.png
+File5=setup.bal
+NumberOfLibraries=20
 Library1=core
 Library2=bleextex
 Library3=sql
@@ -27,11 +32,14 @@ Library9=archiver
 Library10=json
 Library11=http
 Library12=randomaccessfile
-Library13=libgoogledrive
-Library14=stringutils
-Library15=webviewxtended
-Library16=xmlsax
-Library17=dialogs
+Library13=stringutils
+Library14=webviewxtended
+Library15=xmlsax
+Library16=dialogs
+Library17=network
+Library18=mlwifi
+Library19=libgoogledrive
+Library20=httputils2
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: OC Cell Logger
@@ -58,7 +66,15 @@ Sub Globals
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
+	If FirstTime Then 'launch the helper activities
+		If IsPaused(activity_db) Then
+			StartService(activity_db)
+		    CallSubDelayed2(activity_db,"write_activity","App started")
+		End If
+		If IsPaused(file_manager) Then StartService(file_manager)
+	End If
 	Activity.LoadLayout("logger_layout")
+	StartActivity(setup)
 	show_launch_state
 End Sub
 
@@ -70,12 +86,6 @@ Sub Activity_Pause (UserClosed As Boolean)
 
 End Sub
 
-''##Setup #####################################################################################
-''##############################################################################################
-'This sub handles setup of the field database
-Sub setup(FirstTime As Boolean)
-
-End Sub
 
 '########################################################################################
 '##events
@@ -83,14 +93,9 @@ End Sub
 Sub launch_button_Click
 	'start services if not running
 	If launch_button.Tag <> "running" Then
-		If IsPaused(activity_db) Then
-			 StartService(activity_db)
-			 CallSubDelayed2(activity_db,"write_activity","App started")
-		End If
-		If IsPaused(file_manager) Then StartService(file_manager)
 		StartService(main_controller)
 		'setup phone
-		my_phone.SetScreenBrightness(0.1)
+		my_phone.SetScreenBrightness(0.0)
 		my_phone_state.PartialLock
 		launch_button.Tag = "running"
 		Return
@@ -115,11 +120,15 @@ Sub service_check_Click
 	If IsPaused(main_controller) = False Then running.AddSingleLine("main_controller")
 	If IsPaused(file_manager) = False Then running.AddSingleLine("file_manager")
 	If IsPaused(activity_db) = False Then running.AddSingleLine("activity_db")
+	If IsPaused(bt_interact) = False Then running.AddSingleLine("bt_interact")
 	If running.Size > 1 Then running.RemoveAt(0)
 	a_dialog.AddView(running,5%x,5%y,80%x,80%y)
 	a_dialog.Show("Services","","Close","",Null)
 End Sub
 
+Sub test_button_click
+	StartService(bt_interact)
+End Sub
 
 
 ''########Utility Functions ######################################################

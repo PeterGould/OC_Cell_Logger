@@ -51,7 +51,7 @@ public static RemoteObject _target = RemoteObject.declareNull("Object");
 public static RemoteObject _event = RemoteObject.createImmutable("");
 public static RemoteObject _front = RemoteObject.createImmutable(false);
 public static RemoteObject _parameters = RemoteObject.declareNull("Object");
-public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.httputils2service");
+public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
 public static RemoteObject _modrequest = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.modrequest");
 public static RemoteObject _svcmonitoring = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring");
 public static com.olympiacircuits.main _main = null;
@@ -60,6 +60,7 @@ public static com.olympiacircuits.activity_db _activity_db = null;
 public static com.olympiacircuits.file_manager _file_manager = null;
 public static com.olympiacircuits.camera_activity _camera_activity = null;
 public static com.olympiacircuits.main_controller _main_controller = null;
+public static com.olympiacircuits.setup _setup = null;
 public static Object[] GetGlobals(RemoteObject _ref) throws Exception {
 		return new Object[] {"cam",_ref.getField(false, "_cam"),"event",_ref.getField(false, "_event"),"Front",_ref.getField(false, "_front"),"HttpUtils2Service",_ref.getField(false, "_httputils2service"),"modRequest",_ref.getField(false, "_modrequest"),"nativeCam",_ref.getField(false, "_nativecam"),"parameters",_ref.getField(false, "_parameters"),"r",_ref.getField(false, "_r"),"svcMonitoring",_ref.getField(false, "_svcmonitoring"),"target",_ref.getField(false, "_target")};
 }

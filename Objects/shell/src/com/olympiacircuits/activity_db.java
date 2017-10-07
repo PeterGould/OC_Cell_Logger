@@ -47,7 +47,7 @@ public static RemoteObject _activity_con = RemoteObject.declareNull("anywheresof
 public static RemoteObject _db_dir = RemoteObject.createImmutable("");
 public static RemoteObject _db_name = RemoteObject.createImmutable("");
 public static RemoteObject _db_path = RemoteObject.createImmutable("");
-public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.httputils2service");
+public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
 public static RemoteObject _modrequest = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.modrequest");
 public static RemoteObject _svcmonitoring = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring");
 public static com.olympiacircuits.main _main = null;
@@ -55,7 +55,8 @@ public static com.olympiacircuits.bt_interact _bt_interact = null;
 public static com.olympiacircuits.file_manager _file_manager = null;
 public static com.olympiacircuits.camera_activity _camera_activity = null;
 public static com.olympiacircuits.main_controller _main_controller = null;
+public static com.olympiacircuits.setup _setup = null;
   public Object[] GetGlobals() {
-		return new Object[] {"activity_con",activity_db._activity_con,"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"db_dir",activity_db._db_dir,"db_name",activity_db._db_name,"db_path",activity_db._db_path,"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",activity_db.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",activity_db.mostCurrent._modrequest,"Service",activity_db.mostCurrent._service,"svcMonitoring",activity_db.mostCurrent._svcmonitoring};
+		return new Object[] {"activity_con",activity_db._activity_con,"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"db_dir",activity_db._db_dir,"db_name",activity_db._db_name,"db_path",activity_db._db_path,"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",activity_db.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",activity_db.mostCurrent._modrequest,"Service",activity_db.mostCurrent._service,"setup",Debug.moduleToString(com.olympiacircuits.setup.class),"svcMonitoring",activity_db.mostCurrent._svcmonitoring};
 }
 }

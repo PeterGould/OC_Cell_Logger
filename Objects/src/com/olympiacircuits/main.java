@@ -318,6 +318,7 @@ public static void initializeProcessGlobals() {
 		        anywheresoftware.b4a.samples.gmailcontacts.httputils2service._process_globals();
 anywheresoftware.b4a.samples.gmailcontacts.modrequest._process_globals();
 anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring._process_globals();
+anywheresoftware.b4a.samples.httputils2.httputils2service._process_globals();
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);
@@ -328,6 +329,7 @@ public static boolean isAnyActivityVisible() {
     boolean vis = false;
 vis = vis | (main.mostCurrent != null);
 vis = vis | (camera_activity.mostCurrent != null);
+vis = vis | (setup.mostCurrent != null);
 vis = vis | (anywheresoftware.b4a.samples.gmailcontacts.modrequest.mostCurrent != null);
 return vis;}
 
@@ -360,12 +362,24 @@ BA.applicationContext.stopService(new android.content.Intent(BA.applicationConte
 				__a.finish();}
 
 BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, main_controller.class));
+ {
+            Activity __a = null;
+            if (setup.previousOne != null) {
+				__a = setup.previousOne.get();
+			}
+            else {
+                BA ba = setup.mostCurrent.processBA.sharedProcessBA.activityBA.get();
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
 }
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static anywheresoftware.b4a.phone.Phone _my_phone = null;
 public static anywheresoftware.b4a.phone.Phone.PhoneWakeState _my_phone_state = null;
 public anywheresoftware.b4a.objects.ButtonWrapper _launch_button = null;
-public anywheresoftware.b4a.samples.gmailcontacts.httputils2service _httputils2service = null;
+public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public anywheresoftware.b4a.samples.gmailcontacts.modrequest _modrequest = null;
 public anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring _svcmonitoring = null;
 public com.olympiacircuits.bt_interact _bt_interact = null;
@@ -373,6 +387,70 @@ public com.olympiacircuits.activity_db _activity_db = null;
 public com.olympiacircuits.file_manager _file_manager = null;
 public com.olympiacircuits.camera_activity _camera_activity = null;
 public com.olympiacircuits.main_controller _main_controller = null;
+public com.olympiacircuits.setup _setup = null;
+public static String  _activity_create(boolean _firsttime) throws Exception{
+RDebugUtils.currentModule="main";
+RDebugUtils.currentLine=131072;
+ //BA.debugLineNum = 131072;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=131073;
+ //BA.debugLineNum = 131073;BA.debugLine="If FirstTime Then 'launch the helper activities";
+if (_firsttime) { 
+RDebugUtils.currentLine=131074;
+ //BA.debugLineNum = 131074;BA.debugLine="If IsPaused(activity_db) Then";
+if (anywheresoftware.b4a.keywords.Common.IsPaused(mostCurrent.activityBA,(Object)(mostCurrent._activity_db.getObject()))) { 
+RDebugUtils.currentLine=131075;
+ //BA.debugLineNum = 131075;BA.debugLine="StartService(activity_db)";
+anywheresoftware.b4a.keywords.Common.StartService(mostCurrent.activityBA,(Object)(mostCurrent._activity_db.getObject()));
+RDebugUtils.currentLine=131076;
+ //BA.debugLineNum = 131076;BA.debugLine="CallSubDelayed2(activity_db,\"write_activity\"";
+anywheresoftware.b4a.keywords.Common.CallSubDelayed2(mostCurrent.activityBA,(Object)(mostCurrent._activity_db.getObject()),"write_activity",(Object)("App started"));
+ };
+RDebugUtils.currentLine=131078;
+ //BA.debugLineNum = 131078;BA.debugLine="If IsPaused(file_manager) Then StartService(file";
+if (anywheresoftware.b4a.keywords.Common.IsPaused(mostCurrent.activityBA,(Object)(mostCurrent._file_manager.getObject()))) { 
+anywheresoftware.b4a.keywords.Common.StartService(mostCurrent.activityBA,(Object)(mostCurrent._file_manager.getObject()));};
+ };
+RDebugUtils.currentLine=131080;
+ //BA.debugLineNum = 131080;BA.debugLine="Activity.LoadLayout(\"logger_layout\")";
+mostCurrent._activity.LoadLayout("logger_layout",mostCurrent.activityBA);
+RDebugUtils.currentLine=131081;
+ //BA.debugLineNum = 131081;BA.debugLine="StartActivity(setup)";
+anywheresoftware.b4a.keywords.Common.StartActivity(mostCurrent.activityBA,(Object)(mostCurrent._setup.getObject()));
+RDebugUtils.currentLine=131082;
+ //BA.debugLineNum = 131082;BA.debugLine="show_launch_state";
+_show_launch_state();
+RDebugUtils.currentLine=131083;
+ //BA.debugLineNum = 131083;BA.debugLine="End Sub";
+return "";
+}
+public static String  _show_launch_state() throws Exception{
+RDebugUtils.currentModule="main";
+RDebugUtils.currentLine=4521984;
+ //BA.debugLineNum = 4521984;BA.debugLine="Sub show_launch_state";
+RDebugUtils.currentLine=4521985;
+ //BA.debugLineNum = 4521985;BA.debugLine="If launch_button.Tag = \"stopped\" Then";
+if ((mostCurrent._launch_button.getTag()).equals((Object)("stopped"))) { 
+RDebugUtils.currentLine=4521986;
+ //BA.debugLineNum = 4521986;BA.debugLine="launch_button.Color = Colors.Green";
+mostCurrent._launch_button.setColor(anywheresoftware.b4a.keywords.Common.Colors.Green);
+RDebugUtils.currentLine=4521987;
+ //BA.debugLineNum = 4521987;BA.debugLine="launch_button.Text = \"Launch\"";
+mostCurrent._launch_button.setText((Object)("Launch"));
+ };
+RDebugUtils.currentLine=4521989;
+ //BA.debugLineNum = 4521989;BA.debugLine="If launch_button.Tag = \"running\" Then";
+if ((mostCurrent._launch_button.getTag()).equals((Object)("running"))) { 
+RDebugUtils.currentLine=4521990;
+ //BA.debugLineNum = 4521990;BA.debugLine="launch_button.Color = Colors.Red";
+mostCurrent._launch_button.setColor(anywheresoftware.b4a.keywords.Common.Colors.Red);
+RDebugUtils.currentLine=4521991;
+ //BA.debugLineNum = 4521991;BA.debugLine="launch_button.Text = \"Running\"";
+mostCurrent._launch_button.setText((Object)("Running"));
+ };
+RDebugUtils.currentLine=4521993;
+ //BA.debugLineNum = 4521993;BA.debugLine="End Sub";
+return "";
+}
 public static String  _activity_pause(boolean _userclosed) throws Exception{
 RDebugUtils.currentModule="main";
 RDebugUtils.currentLine=262144;
@@ -389,56 +467,112 @@ RDebugUtils.currentLine=196610;
  //BA.debugLineNum = 196610;BA.debugLine="End Sub";
 return "";
 }
+public static String  _launch_button_click() throws Exception{
+RDebugUtils.currentModule="main";
+RDebugUtils.currentLine=4325376;
+ //BA.debugLineNum = 4325376;BA.debugLine="Sub launch_button_Click";
+RDebugUtils.currentLine=4325378;
+ //BA.debugLineNum = 4325378;BA.debugLine="If launch_button.Tag <> \"running\" Then";
+if ((mostCurrent._launch_button.getTag()).equals((Object)("running")) == false) { 
+RDebugUtils.currentLine=4325379;
+ //BA.debugLineNum = 4325379;BA.debugLine="StartService(main_controller)";
+anywheresoftware.b4a.keywords.Common.StartService(mostCurrent.activityBA,(Object)(mostCurrent._main_controller.getObject()));
+RDebugUtils.currentLine=4325381;
+ //BA.debugLineNum = 4325381;BA.debugLine="my_phone.SetScreenBrightness(0.0)";
+_my_phone.SetScreenBrightness(processBA,(float) (0.0));
+RDebugUtils.currentLine=4325382;
+ //BA.debugLineNum = 4325382;BA.debugLine="my_phone_state.PartialLock";
+_my_phone_state.PartialLock(processBA);
+RDebugUtils.currentLine=4325383;
+ //BA.debugLineNum = 4325383;BA.debugLine="launch_button.Tag = \"running\"";
+mostCurrent._launch_button.setTag((Object)("running"));
+RDebugUtils.currentLine=4325384;
+ //BA.debugLineNum = 4325384;BA.debugLine="Return";
+if (true) return "";
+ };
+RDebugUtils.currentLine=4325387;
+ //BA.debugLineNum = 4325387;BA.debugLine="If launch_button.Tag = \"running\" Then";
+if ((mostCurrent._launch_button.getTag()).equals((Object)("running"))) { 
+RDebugUtils.currentLine=4325388;
+ //BA.debugLineNum = 4325388;BA.debugLine="my_phone_state.ReleasePartialLock";
+_my_phone_state.ReleasePartialLock();
+RDebugUtils.currentLine=4325389;
+ //BA.debugLineNum = 4325389;BA.debugLine="my_phone_state.ReleaseKeepAlive";
+_my_phone_state.ReleaseKeepAlive();
+RDebugUtils.currentLine=4325390;
+ //BA.debugLineNum = 4325390;BA.debugLine="StopService(main_controller)";
+anywheresoftware.b4a.keywords.Common.StopService(mostCurrent.activityBA,(Object)(mostCurrent._main_controller.getObject()));
+RDebugUtils.currentLine=4325391;
+ //BA.debugLineNum = 4325391;BA.debugLine="my_phone.SetScreenBrightness(0.7)";
+_my_phone.SetScreenBrightness(processBA,(float) (0.7));
+RDebugUtils.currentLine=4325392;
+ //BA.debugLineNum = 4325392;BA.debugLine="launch_button.Tag = \"stopped\"";
+mostCurrent._launch_button.setTag((Object)("stopped"));
+ };
+RDebugUtils.currentLine=4325394;
+ //BA.debugLineNum = 4325394;BA.debugLine="show_launch_state";
+_show_launch_state();
+RDebugUtils.currentLine=4325395;
+ //BA.debugLineNum = 4325395;BA.debugLine="End Sub";
+return "";
+}
 public static String  _service_check_click() throws Exception{
 RDebugUtils.currentModule="main";
 anywheresoftware.b4a.objects.ListViewWrapper _running = null;
 anywheresoftware.b4a.agraham.dialogs.InputDialog.CustomDialog _a_dialog = null;
-RDebugUtils.currentLine=11206656;
- //BA.debugLineNum = 11206656;BA.debugLine="Sub service_check_Click";
-RDebugUtils.currentLine=11206657;
- //BA.debugLineNum = 11206657;BA.debugLine="Dim running As ListView";
+RDebugUtils.currentLine=4390912;
+ //BA.debugLineNum = 4390912;BA.debugLine="Sub service_check_Click";
+RDebugUtils.currentLine=4390913;
+ //BA.debugLineNum = 4390913;BA.debugLine="Dim running As ListView";
 _running = new anywheresoftware.b4a.objects.ListViewWrapper();
-RDebugUtils.currentLine=11206658;
- //BA.debugLineNum = 11206658;BA.debugLine="Dim a_dialog As CustomDialog";
+RDebugUtils.currentLine=4390914;
+ //BA.debugLineNum = 4390914;BA.debugLine="Dim a_dialog As CustomDialog";
 _a_dialog = new anywheresoftware.b4a.agraham.dialogs.InputDialog.CustomDialog();
-RDebugUtils.currentLine=11206659;
- //BA.debugLineNum = 11206659;BA.debugLine="running.Initialize(\"running\")";
+RDebugUtils.currentLine=4390915;
+ //BA.debugLineNum = 4390915;BA.debugLine="running.Initialize(\"running\")";
 _running.Initialize(mostCurrent.activityBA,"running");
-RDebugUtils.currentLine=11206660;
- //BA.debugLineNum = 11206660;BA.debugLine="running.AddSingleLine(\"None\")";
+RDebugUtils.currentLine=4390916;
+ //BA.debugLineNum = 4390916;BA.debugLine="running.AddSingleLine(\"None\")";
 _running.AddSingleLine("None");
-RDebugUtils.currentLine=11206661;
- //BA.debugLineNum = 11206661;BA.debugLine="If IsPaused(main_controller) = False Then running";
+RDebugUtils.currentLine=4390917;
+ //BA.debugLineNum = 4390917;BA.debugLine="If IsPaused(main_controller) = False Then running";
 if (anywheresoftware.b4a.keywords.Common.IsPaused(mostCurrent.activityBA,(Object)(mostCurrent._main_controller.getObject()))==anywheresoftware.b4a.keywords.Common.False) { 
 _running.AddSingleLine("main_controller");};
-RDebugUtils.currentLine=11206662;
- //BA.debugLineNum = 11206662;BA.debugLine="If IsPaused(file_manager) = False Then running.Ad";
+RDebugUtils.currentLine=4390918;
+ //BA.debugLineNum = 4390918;BA.debugLine="If IsPaused(file_manager) = False Then running.Ad";
 if (anywheresoftware.b4a.keywords.Common.IsPaused(mostCurrent.activityBA,(Object)(mostCurrent._file_manager.getObject()))==anywheresoftware.b4a.keywords.Common.False) { 
 _running.AddSingleLine("file_manager");};
-RDebugUtils.currentLine=11206663;
- //BA.debugLineNum = 11206663;BA.debugLine="If IsPaused(activity_db) = False Then running.Add";
+RDebugUtils.currentLine=4390919;
+ //BA.debugLineNum = 4390919;BA.debugLine="If IsPaused(activity_db) = False Then running.Add";
 if (anywheresoftware.b4a.keywords.Common.IsPaused(mostCurrent.activityBA,(Object)(mostCurrent._activity_db.getObject()))==anywheresoftware.b4a.keywords.Common.False) { 
 _running.AddSingleLine("activity_db");};
-RDebugUtils.currentLine=11206664;
- //BA.debugLineNum = 11206664;BA.debugLine="If running.Size > 1 Then running.RemoveAt(0)";
+RDebugUtils.currentLine=4390920;
+ //BA.debugLineNum = 4390920;BA.debugLine="If IsPaused(bt_interact) = False Then running.Add";
+if (anywheresoftware.b4a.keywords.Common.IsPaused(mostCurrent.activityBA,(Object)(mostCurrent._bt_interact.getObject()))==anywheresoftware.b4a.keywords.Common.False) { 
+_running.AddSingleLine("bt_interact");};
+RDebugUtils.currentLine=4390921;
+ //BA.debugLineNum = 4390921;BA.debugLine="If running.Size > 1 Then running.RemoveAt(0)";
 if (_running.getSize()>1) { 
 _running.RemoveAt((int) (0));};
-RDebugUtils.currentLine=11206665;
- //BA.debugLineNum = 11206665;BA.debugLine="a_dialog.AddView(running,5%x,5%y,80%x,80%y)";
+RDebugUtils.currentLine=4390922;
+ //BA.debugLineNum = 4390922;BA.debugLine="a_dialog.AddView(running,5%x,5%y,80%x,80%y)";
 _a_dialog.AddView((android.view.View)(_running.getObject()),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (5),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (5),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (80),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (80),mostCurrent.activityBA));
-RDebugUtils.currentLine=11206666;
- //BA.debugLineNum = 11206666;BA.debugLine="a_dialog.Show(\"Services\",\"\",\"Close\",\"\",Null)";
+RDebugUtils.currentLine=4390923;
+ //BA.debugLineNum = 4390923;BA.debugLine="a_dialog.Show(\"Services\",\"\",\"Close\",\"\",Null)";
 _a_dialog.Show("Services","","Close","",mostCurrent.activityBA,(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null));
-RDebugUtils.currentLine=11206667;
- //BA.debugLineNum = 11206667;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4390924;
+ //BA.debugLineNum = 4390924;BA.debugLine="End Sub";
 return "";
 }
-public static String  _setup(boolean _firsttime) throws Exception{
+public static String  _test_button_click() throws Exception{
 RDebugUtils.currentModule="main";
-RDebugUtils.currentLine=327680;
- //BA.debugLineNum = 327680;BA.debugLine="Sub setup(FirstTime As Boolean)";
-RDebugUtils.currentLine=327682;
- //BA.debugLineNum = 327682;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4456448;
+ //BA.debugLineNum = 4456448;BA.debugLine="Sub test_button_click";
+RDebugUtils.currentLine=4456449;
+ //BA.debugLineNum = 4456449;BA.debugLine="StartService(bt_interact)";
+anywheresoftware.b4a.keywords.Common.StartService(mostCurrent.activityBA,(Object)(mostCurrent._bt_interact.getObject()));
+RDebugUtils.currentLine=4456450;
+ //BA.debugLineNum = 4456450;BA.debugLine="End Sub";
 return "";
 }
 }

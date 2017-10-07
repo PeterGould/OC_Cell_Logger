@@ -1,17 +1,17 @@
 com.olympiacircuits
-main,activity_create,1,1,25,28
+main,activity_create,1,0,25,36
 ,launch_button
 ,launch_button
 ,show_launch_state
-main,show_launch_state,0,1,91,100
+main,show_launch_state,0,0,92,101
 ,launch_button
 
 
-main,activity_pause,0,0,34,36
+main,activity_pause,0,0,42,44
 
 
 
-main,activity_resume,0,0,30,32
+main,activity_resume,0,0,38,40
 
 
 
@@ -19,7 +19,7 @@ main,globals,0,1,21,23
 
 
 
-main,launch_button_click,0,1,48,72
+main,launch_button_click,0,0,50,69
 ,launch_button,,my_phone,,my_phone_state
 
 ,show_launch_state
@@ -27,139 +27,187 @@ main,process_globals,0,1,15,18
 
 
 
-main,service_check_click,1,0,75,86
+main,service_check_click,1,0,72,84
 
 
 
-main,setup,0,0,41,43
+main,test_button_click,0,0,86,88
 
 
 
-bt_interact,ble_characteristicchanged,0,0,172,190
-,first_read,,ble_timer,,timer_switch,,readcharacteristic,,conv,,data_buffer,,writecharacteristic,,manager
-,timer_switch,,data_buffer
+bt_interact,ble_characteristicchanged,0,0,184,212
+,writecharacteristic,,readcharacteristic,,conv,,at_active,,soda_stage,,first_read,,ble_timer,,timer_switch,,data_buffer,,manager
+,at_active,,soda_stage,,timer_switch,,data_buffer
+,soda_switch
+bt_interact,soda_switch,0,0,287,331
+,at_active,,soda_stage,,writecharacteristic,,manager
+,at_active
 
-bt_interact,ble_connected,0,0,142,162
-,ble_timer,,connectstate,,cstatepreconnect,,cstateconnect,,bleservice,,readcharacteristic,,manager,,writecharacteristic,,timer_switch,,connection_tries
-,connectstate,,bleservice,,readcharacteristic,,writecharacteristic,,timer_switch,,connection_tries
-
-bt_interact,ble_devicefound,0,0,112,119
+bt_interact,ble_connected,0,0,149,174
+,ble_timer,,connectstate,,cstatepreconnect,,cstateconnect,,bleservice,,readcharacteristic,,manager,,writecharacteristic,,timer_switch,,connection_tries,,soda_stage,,at_active
+,connectstate,,bleservice,,readcharacteristic,,writecharacteristic,,timer_switch,,connection_tries,,soda_stage,,at_active
+,soda_switch
+bt_interact,ble_devicefound,0,0,116,126
 ,listbledevicesname,,listbledevicesmacadress
 
 
-bt_interact,ble_disconnected,0,0,164,169
+bt_interact,ble_disconnected,0,0,176,181
 ,connectstate,,cstatedisconnect,,manager
 ,connectstate
 
-bt_interact,ble_discoveryfinished,0,0,121,138
-,listbledevicesname,,scan_status,,connection_tries,,device_n,,ble_timer,,connectstate,,cstatedisconnect,,cstatepreconnect,,manager,,listbledevicesmacadress,,data_buffer,,first_read,,btadmin
-,scan_status,,connection_tries,,device_n,,connectstate,,data_buffer,,first_read
+bt_interact,ble_discoveryfinished,0,0,128,145
+,listbledevicesname,,scan_status,,connection_tries,,device_n,,ble_timer,,connectstate,,cstatedisconnect,,cstatepreconnect,,manager,,listbledevicesmacadress,,data_buffer,,first_read,,timer_switch,,btadmin
+,scan_status,,connection_tries,,device_n,,connectstate,,data_buffer,,first_read,,timer_switch
 ,service_destroy,,connect_a_device,,bt_finish
-bt_interact,service_destroy,0,0,57,59
+bt_interact,service_destroy,0,0,59,61
 
 
 
-bt_interact,connect_a_device,0,0,78,97
-,device_n,,listbledevicesname,,ble_timer,,connectstate,,cstatedisconnect,,cstatepreconnect,,manager,,listbledevicesmacadress,,data_buffer,,first_read,,btadmin
-,connectstate,,data_buffer,,first_read
-,bt_finish,,service_destroy
-bt_interact,ble_timer_tick,0,0,194,240
-,timer_switch,,ble_timer,,connection_tries,,device_n,,writecharacteristic,,manager,,readcharacteristic,,scan_status,,connectstate,,cstatedisconnect,,listbledevicesname,,listbledevicesmacadress,,cstatepreconnect,,data_buffer,,first_read,,btadmin,file_manager,current_dir
-,connection_tries,,device_n,,scan_status,,connectstate,,data_buffer,,first_read
-,scan_bt_devices,,connect_a_device,,write_bt_file,,bt_finish,,service_destroy
-bt_interact,scan_bt_devices,0,0,65,75
-,scan_status,,manager,,connectstate,,cstatedisconnect,,listbledevicesname,,listbledevicesmacadress
+bt_interact,connect_a_device,0,0,81,101
+,device_n,,listbledevicesname,,ble_timer,,connectstate,,cstatedisconnect,,cstatepreconnect,,manager,,listbledevicesmacadress,,data_buffer,,first_read,,timer_switch,,btadmin
+,connectstate,,data_buffer,,first_read,,timer_switch
+,bt_finish
+bt_interact,ble_timer_tick,0,0,216,272
+,timer_switch,,ble_timer,,connection_tries,,device_n,,soda_stage,,listbledevicesname,,listbledevicesmacadress,,scan_status,,manager,,connectstate,,cstatedisconnect,,cstatepreconnect,,data_buffer,,first_read,,btadmin,,at_active,,writecharacteristic,file_manager,current_dir
+,connection_tries,,device_n,,timer_switch,,soda_stage,,scan_status,,connectstate,,data_buffer,,first_read,,at_active
+,scan_bt_devices,,connect_a_device,,soda_switch,,write_bt_file,,bt_finish
+bt_interact,scan_bt_devices,0,0,67,78
+,listbledevicesname,,listbledevicesmacadress,,scan_status,,manager,,connectstate,,cstatedisconnect
 ,scan_status,,connectstate
 
-bt_interact,write_bt_file,0,0,243,252
+bt_interact,write_bt_file,0,0,275,284
 ,listbledevicesname,,device_n,file_manager,current_dir,,data_buffer
 ,data_buffer
 
-bt_interact,bt_finish,0,0,105,109
+bt_interact,bt_finish,0,0,109,113
 ,btadmin
 
-,service_destroy
-bt_interact,disconnect_a_device,0,0,100,102
+
+bt_interact,disconnect_a_device,0,0,104,106
 ,manager
 
 
-bt_interact,process_globals,0,1,5,28
-,scan_status,,cstatedisconnect,,cstatepreconnect,,cstateconnect,,connection_tries,,device_n,,first_read,,data_buffer
-,scan_status,,cstatedisconnect,,cstatepreconnect,,cstateconnect,,connection_tries,,device_n,,first_read,,data_buffer
+bt_interact,process_globals,0,1,5,30
+,scan_status,,cstatedisconnect,,cstatepreconnect,,cstateconnect,,connection_tries,,device_n,,first_read,,data_buffer,,at_active,,soda_stage
+,scan_status,,cstatedisconnect,,cstatepreconnect,,cstateconnect,,connection_tries,,device_n,,first_read,,data_buffer,,at_active,,soda_stage
 
-bt_interact,service_create,0,0,30,42
+bt_interact,service_create,0,0,32,44
 ,manager,,btadmin,,listbledevicesname,,listbledevicesmacadress,,ble_timer,,timer_wait
 
 
-bt_interact,service_start,0,0,44,55
+bt_interact,service_start,0,0,46,57
 ,timer_wait,,btadmin,,timer_switch,,ble_timer
 ,timer_wait,,timer_switch
 
-activity_db,process_globals,0,1,5,10
+activity_db,do_query,0,0,78,80
+,activity_con
+
+
+activity_db,get_lines,0,0,56,75
+,activity_con
+
+
+activity_db,process_globals,0,1,5,11
 ,db_dir,,db_name
 ,db_dir,,db_name
 
-activity_db,service_create,0,0,12,28
+activity_db,service_create,0,0,13,35
 ,db_path,,db_dir,,db_name,,activity_con
 ,db_path,,db_name
 ,write_activity
-activity_db,write_activity,0,0,39,46
+activity_db,write_activity,0,0,46,53
 ,activity_con
 
 
-activity_db,service_destroy,0,0,34,36
+activity_db,service_destroy,0,0,41,43
 ,activity_con
 
 
-activity_db,service_start,0,0,30,32
+activity_db,service_start,0,0,37,39
 ,activity_con,,db_path,,db_name
 
 
-file_manager,archive_current_dir,0,0,48,60
+activity_db,update_schedule,0,1,82,135
+,activity_con
+
+,get_lines,,do_query
+file_manager,archive_current_dir,0,0,49,62
 ,sub_dir,,current_dir,,root_dir
 
 
-file_manager,gdrive_connected,0,0,76,79
+file_manager,file_in_stage,0,0,131,141
+,stage_file,,root_dir
 
 
+file_manager,file_timer_tick,0,0,192,223
+,file_timer,,timer_switch,,my_wifi,,cls_drive,,clientid,,clientsecret
+,timer_switch
+,google_drive_setup,,toggle_network,,turn_off_network,,toggle_wifi
+file_manager,google_drive_setup,0,0,84,93
+,timer_switch,,file_timer,,cls_drive,,clientid,,clientsecret
+,timer_switch
 
-file_manager,get_current_dir,0,0,43,45
-,current_dir
+file_manager,toggle_network,0,0,153,163
+,timer_switch,,file_timer
+,timer_switch
 
-
-file_manager,google_drive_upload,0,0,69,73
-,cls_drive,,clientid,,clientsecret
-
-
-file_manager,process_globals,0,1,5,12
-,root_dir,,clientid,,clientsecret
-,root_dir,,clientid,,clientsecret
-
-file_manager,service_create,0,0,14,33
+file_manager,turn_off_network,0,0,165,169
+,my_wifi,,timer_switch,,file_timer
+,timer_switch
+,toggle_wifi,,toggle_network
+file_manager,gdrive_connected,0,0,96,99
+,stage_file,,cls_drive,,root_dir,,my_wifi,,timer_switch,,file_timer
+,timer_switch
+,upload_files,,file_in_stage,,turn_off_network,,toggle_wifi,,toggle_network
+file_manager,upload_files,0,0,103,111
+,stage_file,,cls_drive,,root_dir,,my_wifi,,timer_switch,,file_timer
+,timer_switch
+,file_in_stage,,turn_off_network,,toggle_wifi,,toggle_network
+file_manager,gdrive_fileuploaded,0,0,114,128
+,stage_file,,root_dir,,cls_drive,,my_wifi,,timer_switch,,file_timer
+,timer_switch
+,upload_files,,file_in_stage,,turn_off_network,,toggle_wifi,,toggle_network
+file_manager,get_current_dir,0,0,40,46
+,current_dir,,root_dir,,sub_dir
+,sub_dir,,current_dir
+,update_current_dir
+file_manager,update_current_dir,0,0,173,189
 ,root_dir,,sub_dir,,current_dir
 ,sub_dir,,current_dir
 
-file_manager,service_destroy,0,0,39,41
+file_manager,process_globals,0,1,5,16
+,root_dir,,clientid,,clientsecret,,timer_switch
+,root_dir,,clientid,,clientsecret,,timer_switch
+
+file_manager,service_create,0,0,19,30
+,root_dir,,file_timer,,stage_file,,sub_dir,,current_dir
+,sub_dir,,current_dir
+,update_current_dir
+file_manager,service_destroy,0,0,36,38
 
 
 
-file_manager,service_start,0,0,35,37
+file_manager,service_start,0,0,32,34
 
 
 
-file_manager,zip_zipdone,0,0,63,65
+file_manager,toggle_wifi,0,0,144,151
+,my_wifi,,timer_switch,,file_timer
+,timer_switch
 
-
-
-auto_camera,camera_close,0,0,50,53
+file_manager,zip_zipdone,0,0,66,79
+,my_wifi,,root_dir,,sub_dir,,current_dir,,timer_switch,,file_timer,,cls_drive,,clientid,,clientsecret
+,sub_dir,,current_dir,,timer_switch
+,update_current_dir,,toggle_wifi,,google_drive_setup
+auto_camera,camera_close,1,0,51,55
 
 
 cameraexclass,stoppreview,cameraexclass,release
-auto_camera,camera_event_picturetaken,1,0,38,47
+auto_camera,camera_event_picturetaken,1,0,40,48
 
 
-cameraexclass,release
-auto_camera,camera_event_ready,0,0,23,34
+,camera_close,cameraexclass,stoppreview,cameraexclass,release
+auto_camera,camera_event_ready,0,0,25,36
 
 
 cameraexclass,startpreview,cameraexclass,setpicturesize,cameraexclass,setjpegquality,cameraexclass,commitparameters,cameraexclass,takepicture
@@ -167,59 +215,59 @@ auto_camera,class_globals,0,1,2,7
 
 
 
-auto_camera,initialize,1,0,10,19
+auto_camera,initialize,1,0,10,21
 
 
-cameraexclass,initialize,cameraexclass,findcamera
-cameraexclass,stoppreview,0,0,111,113
-
-
-
-cameraexclass,release,0,0,115,117
+,camera_close,cameraexclass,initialize,cameraexclass,stoppreview,cameraexclass,release,cameraexclass,findcamera
+cameraexclass,stoppreview,0,0,110,112
 
 
 
-cameraexclass,startpreview,0,0,107,109
+cameraexclass,release,0,0,114,116
 
 
 
-cameraexclass,setpicturesize,0,0,166,169
+cameraexclass,startpreview,0,0,106,108
 
 
 
-cameraexclass,setjpegquality,0,0,171,174
+cameraexclass,setpicturesize,0,0,164,167
 
 
 
-cameraexclass,commitparameters,0,0,136,144
+cameraexclass,setjpegquality,0,0,169,172
 
 
 
-cameraexclass,takepicture,0,0,99,101
+cameraexclass,commitparameters,0,0,135,142
 
 
 
-cameraexclass,initialize,1,0,18,33
+cameraexclass,takepicture,0,0,98,100
+
+
+
+cameraexclass,initialize,1,0,18,32
 
 
 ,findcamera
-cameraexclass,camera_focusdone,0,0,274,280
+cameraexclass,camera_focusdone,0,0,272,278
 
 
 ,takepicture
-cameraexclass,camera_picturetaken,1,0,103,105
+cameraexclass,camera_picturetaken,1,0,102,104
 
 
 
-cameraexclass,camera_preview,1,0,94,98
+cameraexclass,camera_preview,1,0,93,97
 
 
 
-cameraexclass,camera_ready,1,0,81,92
+cameraexclass,camera_ready,1,0,80,91
 
 
 ,setdisplayorientation,,findcamera,,commitparameters
-cameraexclass,setdisplayorientation,0,0,56,79
+cameraexclass,setdisplayorientation,0,0,55,78
 
 
 ,findcamera,,commitparameters
@@ -227,130 +275,90 @@ cameraexclass,class_globals,0,1,6,16
 
 
 
-cameraexclass,closenow,0,0,265,269
+cameraexclass,closenow,0,0,263,267
 
 
 
-cameraexclass,findcamera,0,0,35,54
+cameraexclass,findcamera,0,0,34,53
 
 
 
-cameraexclass,focusandtakepicture,0,0,271,273
+cameraexclass,focusandtakepicture,0,0,269,271
 
 
 
-cameraexclass,getcoloreffect,0,0,146,148
+cameraexclass,getcoloreffect,0,0,144,146
 
 
 ,getparameter
-cameraexclass,getparameter,0,0,131,134
+cameraexclass,getparameter,0,0,130,133
 
 
 
-cameraexclass,getflashmode,0,0,181,184
+cameraexclass,getflashmode,0,0,179,182
 
 
 
-cameraexclass,getfocusdistances,0,0,257,262
+cameraexclass,getfocusdistances,0,0,255,260
 
 
 
-cameraexclass,getpicturesize,0,0,205,212
+cameraexclass,getpicturesize,0,0,203,210
 
 
 
-cameraexclass,getpreviewsize,0,0,196,203
+cameraexclass,getpreviewsize,0,0,194,201
 
 
 
-cameraexclass,getsupportedcoloreffects,0,0,191,194
+cameraexclass,getsupportedcoloreffects,0,0,189,192
 
 
 
-cameraexclass,getsupportedflashmodes,0,0,186,189
+cameraexclass,getsupportedflashmodes,0,0,184,187
 
 
 
-cameraexclass,getsupportedfocusmodes,0,0,236,239
+cameraexclass,getsupportedfocusmodes,0,0,234,237
 
 
 
-cameraexclass,getsupportedpicturessizes,0,0,154,164
+cameraexclass,getsupportedpicturessizes,0,0,152,162
 
 
 
-cameraexclass,previewimagetojpeg,0,0,216,234
+cameraexclass,previewimagetojpeg,0,0,214,232
 
 
 
-cameraexclass,savepicturetofile,0,0,120,124
+cameraexclass,savepicturetofile,0,0,119,123
 
 
 
-cameraexclass,setcoloreffect,0,0,150,152
+cameraexclass,setcoloreffect,0,0,148,150
 
 
 ,setparameter
-cameraexclass,setparameter,0,0,126,129
+cameraexclass,setparameter,0,0,125,128
 
 
 
-cameraexclass,setcontinuousautofocus,0,0,241,250
+cameraexclass,setcontinuousautofocus,0,0,239,248
 
 
 ,getsupportedfocusmodes,,setfocusmode
-cameraexclass,setfocusmode,0,0,252,255
+cameraexclass,setfocusmode,0,0,250,253
 
 
 
-cameraexclass,setflashmode,0,0,176,179
-
-
-
-bt_controller,ble_characteristicchanged,0,0,110,112
-
-
-
-bt_controller,ble_connected,0,0,90,100
-
-
-
-bt_controller,ble_devicefound,0,0,51,58
-
-
-
-bt_controller,ble_disconnected,0,0,102,107
-
-
-
-bt_controller,ble_discoveryfinished,0,0,60,73
-
-
-,connect_a_device
-bt_controller,connect_a_device,0,0,76,82
-
-
-
-bt_controller,class_globals,0,1,3,18
-
-
-
-bt_controller,connectbt,0,0,39,49
-
-
-
-bt_controller,disconnect_a_device,0,0,85,87
-
-
-
-bt_controller,initialize,1,0,21,36
+cameraexclass,setflashmode,0,0,174,177
 
 
 
 camera_activity,activity_create,1,0,17,21
 ,pic_panel,,a_camera
 
-auto_camera,initialize,cameraexclass,initialize,cameraexclass,findcamera
+auto_camera,initialize,auto_camera,camera_close,cameraexclass,initialize,cameraexclass,stoppreview,cameraexclass,release,cameraexclass,findcamera
 camera_activity,activity_pause,0,0,27,29
 
 
@@ -379,11 +387,143 @@ main_controller,service_create,0,0,12,14
 
 
 
-main_controller,service_destroy,0,0,25,27
+main_controller,service_destroy,0,0,38,40
 
 
 
-main_controller,service_start,0,0,16,23
+main_controller,service_start,0,0,16,36
+
+
+
+setup,activity_create,1,0,19,94
+,show
+
+customlistview,initialize,customlistview,asview,customlistview,add,customlistview,insertat
+setup,activity_pause,0,0,100,102
+
+
+
+setup,activity_resume,0,0,96,98
+
+
+
+setup,globals,0,1,12,17
+
+
+
+setup,process_globals,0,1,6,10
+
+
+
+setup,show_click,1,0,115,138
+
+
+
+setup,spinners_itemclick,0,0,105,113
+
+
+
+customlistview,initialize,1,0,19,37
+
+
+
+customlistview,asview,0,0,40,42
+
+
+
+customlistview,add,0,0,176,178
+
+
+,insertat
+customlistview,insertat,0,0,128,173
+
+
+
+customlistview,addtextitem,0,0,101,103
+
+
+,insertattextitem,,insertat
+customlistview,insertattextitem,0,0,106,125
+
+
+,insertat
+customlistview,class_globals,0,1,3,16
+
+
+
+customlistview,clear,0,0,57,64
+
+
+
+customlistview,designercreateview,0,0,44,54
+
+
+
+customlistview,getitemfromview,0,0,204,215
+
+
+
+customlistview,getpanel,0,0,74,78
+
+
+
+customlistview,getsize,0,0,69,71
+
+
+
+customlistview,getvalue,0,0,81,83
+
+
+
+customlistview,jumptoitem,1,0,181,193
+
+
+
+customlistview,panel_click,1,0,195,201
+
+
+
+customlistview,removeat,0,0,86,98
+
+
+
+bt_controller,ble_characteristicchanged,0,0,109,111
+
+
+
+bt_controller,ble_connected,0,0,89,99
+
+
+
+bt_controller,ble_devicefound,0,0,50,57
+
+
+
+bt_controller,ble_disconnected,0,0,101,106
+
+
+
+bt_controller,ble_discoveryfinished,0,0,59,72
+
+
+,connect_a_device
+bt_controller,connect_a_device,0,0,75,81
+
+
+
+bt_controller,class_globals,0,1,3,18
+
+
+
+bt_controller,connectbt,0,0,39,48
+
+
+
+bt_controller,disconnect_a_device,0,0,84,86
+
+
+
+bt_controller,initialize,1,0,21,36
 
 
 

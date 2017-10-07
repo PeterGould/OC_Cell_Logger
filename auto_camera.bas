@@ -17,6 +17,8 @@ Public Sub Initialize(camera_panel As Panel,save_path As String, set_mode As Str
 		pic_path = save_path
 		holder_panel = camera_panel
 		Mode = set_mode
+		'test to make sure the panel is available. If it's not then quit
+		If holder_panel.IsInitialized = False Then camera_close
 		my_camera.Initialize(holder_panel,False,Me,"camera_event")
 		'set some properties
 		'my_camera.SetPictureSize(1600,1200)
@@ -47,13 +49,13 @@ Sub camera_event_PictureTaken (Data() As Byte)
 	out = File.OpenOutput(pic_path, now & ".jpg", False)
 	out.WriteBytes(Data, 0, Data.Length)
 	out.Close
-	my_camera.Release
-	CallSub(camera_activity,"close_self")
+	camera_close
 End Sub
 
 '###management subs
 Sub camera_close
 	my_camera.StopPreview
 	my_camera.Release
+	CallSub(camera_activity,"close_self")
 End Sub
 

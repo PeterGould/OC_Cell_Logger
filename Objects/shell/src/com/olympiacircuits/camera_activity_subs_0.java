@@ -8,7 +8,7 @@ public class camera_activity_subs_0 {
 
 public static RemoteObject  _activity_create(RemoteObject _firsttime) throws Exception{
 try {
-		Debug.PushSubsStack("Activity_Create (camera_activity) ","camera_activity",7,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,17);
+		Debug.PushSubsStack("Activity_Create (camera_activity) ","camera_activity",5,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,17);
 if (RapidSub.canDelegate("activity_create")) return camera_activity.remoteMe.runUserSub(false, "camera_activity","activity_create", _firsttime);
 Debug.locals.put("FirstTime", _firsttime);
  BA.debugLineNum = 17;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
@@ -35,7 +35,7 @@ finally {
 		}}
 public static RemoteObject  _activity_pause(RemoteObject _userclosed) throws Exception{
 try {
-		Debug.PushSubsStack("Activity_Pause (camera_activity) ","camera_activity",7,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,27);
+		Debug.PushSubsStack("Activity_Pause (camera_activity) ","camera_activity",5,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,27);
 if (RapidSub.canDelegate("activity_pause")) return camera_activity.remoteMe.runUserSub(false, "camera_activity","activity_pause", _userclosed);
 Debug.locals.put("UserClosed", _userclosed);
  BA.debugLineNum = 27;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
@@ -53,7 +53,7 @@ finally {
 		}}
 public static RemoteObject  _activity_resume() throws Exception{
 try {
-		Debug.PushSubsStack("Activity_Resume (camera_activity) ","camera_activity",7,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,23);
+		Debug.PushSubsStack("Activity_Resume (camera_activity) ","camera_activity",5,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,23);
 if (RapidSub.canDelegate("activity_resume")) return camera_activity.remoteMe.runUserSub(false, "camera_activity","activity_resume");
  BA.debugLineNum = 23;BA.debugLine="Sub Activity_Resume";
 Debug.ShouldStop(4194304);
@@ -70,7 +70,7 @@ finally {
 		}}
 public static RemoteObject  _close_self() throws Exception{
 try {
-		Debug.PushSubsStack("close_self (camera_activity) ","camera_activity",7,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,31);
+		Debug.PushSubsStack("close_self (camera_activity) ","camera_activity",5,camera_activity.mostCurrent.activityBA,camera_activity.mostCurrent,31);
 if (RapidSub.canDelegate("close_self")) return camera_activity.remoteMe.runUserSub(false, "camera_activity","close_self");
  BA.debugLineNum = 31;BA.debugLine="Sub close_self";
 Debug.ShouldStop(1073741824);

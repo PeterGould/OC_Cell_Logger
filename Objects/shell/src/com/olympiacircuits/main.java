@@ -56,7 +56,7 @@ public static RemoteObject __c = RemoteObject.declareNull("anywheresoftware.b4a.
 public static RemoteObject _my_phone = RemoteObject.declareNull("anywheresoftware.b4a.phone.Phone");
 public static RemoteObject _my_phone_state = RemoteObject.declareNull("anywheresoftware.b4a.phone.Phone.PhoneWakeState");
 public static RemoteObject _launch_button = RemoteObject.declareNull("anywheresoftware.b4a.objects.ButtonWrapper");
-public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.httputils2service");
+public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
 public static RemoteObject _modrequest = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.modrequest");
 public static RemoteObject _svcmonitoring = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring");
 public static com.olympiacircuits.bt_interact _bt_interact = null;
@@ -64,7 +64,8 @@ public static com.olympiacircuits.activity_db _activity_db = null;
 public static com.olympiacircuits.file_manager _file_manager = null;
 public static com.olympiacircuits.camera_activity _camera_activity = null;
 public static com.olympiacircuits.main_controller _main_controller = null;
+public static com.olympiacircuits.setup _setup = null;
   public Object[] GetGlobals() {
-		return new Object[] {"Activity",main.mostCurrent._activity,"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",main.mostCurrent._httputils2service,"launch_button",main.mostCurrent._launch_button,"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",main.mostCurrent._modrequest,"my_phone",main._my_phone,"my_phone_state",main._my_phone_state,"svcMonitoring",main.mostCurrent._svcmonitoring};
+		return new Object[] {"Activity",main.mostCurrent._activity,"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",main.mostCurrent._httputils2service,"launch_button",main.mostCurrent._launch_button,"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",main.mostCurrent._modrequest,"my_phone",main._my_phone,"my_phone_state",main._my_phone_state,"setup",Debug.moduleToString(com.olympiacircuits.setup.class),"svcMonitoring",main.mostCurrent._svcmonitoring};
 }
 }

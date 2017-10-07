@@ -58,7 +58,7 @@ public static RemoteObject _cstatedisconnect = RemoteObject.createImmutable(0);
 public static RemoteObject _cstatepreconnect = RemoteObject.createImmutable(0);
 public static RemoteObject _cstateconnect = RemoteObject.createImmutable(0);
 public static RemoteObject _ble_timer = RemoteObject.declareNull("anywheresoftware.b4a.objects.Timer");
-public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.httputils2service");
+public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
 public static RemoteObject _modrequest = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.modrequest");
 public static RemoteObject _svcmonitoring = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring");
 public static com.olympiacircuits.main _main = null;
@@ -67,6 +67,7 @@ public static com.olympiacircuits.activity_db _activity_db = null;
 public static com.olympiacircuits.file_manager _file_manager = null;
 public static com.olympiacircuits.camera_activity _camera_activity = null;
 public static com.olympiacircuits.main_controller _main_controller = null;
+public static com.olympiacircuits.setup _setup = null;
 public static Object[] GetGlobals(RemoteObject _ref) throws Exception {
 		return new Object[] {"ble_timer",_ref.getField(false, "_ble_timer"),"bleService",_ref.getField(false, "_bleservice"),"btAdmin",_ref.getField(false, "_btadmin"),"ConnectState",_ref.getField(false, "_connectstate"),"cstateConnect",_ref.getField(false, "_cstateconnect"),"cstateDisconnect",_ref.getField(false, "_cstatedisconnect"),"cstatePreConnect",_ref.getField(false, "_cstatepreconnect"),"HttpUtils2Service",_ref.getField(false, "_httputils2service"),"listBLEDevicesMacAdress",_ref.getField(false, "_listbledevicesmacadress"),"listBLEDevicesName",_ref.getField(false, "_listbledevicesname"),"Manager",_ref.getField(false, "_manager"),"modRequest",_ref.getField(false, "_modrequest"),"pass_message",_ref.getField(false, "_pass_message"),"readCharacteristic",_ref.getField(false, "_readcharacteristic"),"scan_status",_ref.getField(false, "_scan_status"),"svcMonitoring",_ref.getField(false, "_svcmonitoring"),"writeCharacteristic",_ref.getField(false, "_writecharacteristic")};
 }

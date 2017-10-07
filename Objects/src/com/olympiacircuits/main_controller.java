@@ -112,7 +112,7 @@ public class main_controller extends android.app.Service {
 	}
 
 public anywheresoftware.b4a.keywords.Common __c = null;
-public anywheresoftware.b4a.samples.gmailcontacts.httputils2service _httputils2service = null;
+public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public anywheresoftware.b4a.samples.gmailcontacts.modrequest _modrequest = null;
 public anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring _svcmonitoring = null;
 public com.olympiacircuits.main _main = null;
@@ -120,34 +120,71 @@ public com.olympiacircuits.bt_interact _bt_interact = null;
 public com.olympiacircuits.activity_db _activity_db = null;
 public com.olympiacircuits.file_manager _file_manager = null;
 public com.olympiacircuits.camera_activity _camera_activity = null;
+public com.olympiacircuits.setup _setup = null;
 public static String  _service_create() throws Exception{
 RDebugUtils.currentModule="main_controller";
-RDebugUtils.currentLine=9895936;
- //BA.debugLineNum = 9895936;BA.debugLine="Sub Service_Create";
-RDebugUtils.currentLine=9895938;
- //BA.debugLineNum = 9895938;BA.debugLine="End Sub";
+RDebugUtils.currentLine=3670016;
+ //BA.debugLineNum = 3670016;BA.debugLine="Sub Service_Create";
+RDebugUtils.currentLine=3670018;
+ //BA.debugLineNum = 3670018;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_destroy() throws Exception{
 RDebugUtils.currentModule="main_controller";
-RDebugUtils.currentLine=10027008;
- //BA.debugLineNum = 10027008;BA.debugLine="Sub Service_Destroy";
-RDebugUtils.currentLine=10027010;
- //BA.debugLineNum = 10027010;BA.debugLine="End Sub";
+RDebugUtils.currentLine=3801088;
+ //BA.debugLineNum = 3801088;BA.debugLine="Sub Service_Destroy";
+RDebugUtils.currentLine=3801090;
+ //BA.debugLineNum = 3801090;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{
 RDebugUtils.currentModule="main_controller";
-RDebugUtils.currentLine=9961472;
- //BA.debugLineNum = 9961472;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
-RDebugUtils.currentLine=9961474;
- //BA.debugLineNum = 9961474;BA.debugLine="StartServiceAt(\"\",DateTime.Now + 30*30*1000,True)";
-anywheresoftware.b4a.keywords.Common.StartServiceAt(processBA,(Object)(""),(long) (anywheresoftware.b4a.keywords.Common.DateTime.getNow()+30*30*1000),anywheresoftware.b4a.keywords.Common.True);
-RDebugUtils.currentLine=9961478;
- //BA.debugLineNum = 9961478;BA.debugLine="StartActivity(camera_activity)";
+anywheresoftware.b4a.objects.NotificationWrapper _main_notice = null;
+RDebugUtils.currentLine=3735552;
+ //BA.debugLineNum = 3735552;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
+RDebugUtils.currentLine=3735554;
+ //BA.debugLineNum = 3735554;BA.debugLine="StartServiceAt(\"\",DateTime.Now + 30*60*1000,True)";
+anywheresoftware.b4a.keywords.Common.StartServiceAt(processBA,(Object)(""),(long) (anywheresoftware.b4a.keywords.Common.DateTime.getNow()+30*60*1000),anywheresoftware.b4a.keywords.Common.True);
+RDebugUtils.currentLine=3735556;
+ //BA.debugLineNum = 3735556;BA.debugLine="Dim main_notice As Notification";
+_main_notice = new anywheresoftware.b4a.objects.NotificationWrapper();
+RDebugUtils.currentLine=3735557;
+ //BA.debugLineNum = 3735557;BA.debugLine="main_notice.Initialize";
+_main_notice.Initialize();
+RDebugUtils.currentLine=3735558;
+ //BA.debugLineNum = 3735558;BA.debugLine="main_notice.Icon = \"icon\"";
+_main_notice.setIcon("icon");
+RDebugUtils.currentLine=3735559;
+ //BA.debugLineNum = 3735559;BA.debugLine="main_notice.SetInfo(\"OC Logger\",\"Logger Runnin";
+_main_notice.SetInfo(processBA,"OC Logger","Logger Running",(Object)(mostCurrent._main.getObject()));
+RDebugUtils.currentLine=3735560;
+ //BA.debugLineNum = 3735560;BA.debugLine="main_notice.Sound=False";
+_main_notice.setSound(anywheresoftware.b4a.keywords.Common.False);
+RDebugUtils.currentLine=3735561;
+ //BA.debugLineNum = 3735561;BA.debugLine="main_notice.Vibrate=False";
+_main_notice.setVibrate(anywheresoftware.b4a.keywords.Common.False);
+RDebugUtils.currentLine=3735562;
+ //BA.debugLineNum = 3735562;BA.debugLine="main_notice.Light=False";
+_main_notice.setLight(anywheresoftware.b4a.keywords.Common.False);
+RDebugUtils.currentLine=3735563;
+ //BA.debugLineNum = 3735563;BA.debugLine="main_notice.OnGoingEvent = True";
+_main_notice.setOnGoingEvent(anywheresoftware.b4a.keywords.Common.True);
+RDebugUtils.currentLine=3735565;
+ //BA.debugLineNum = 3735565;BA.debugLine="Service.StartForeground(1,main_notice)";
+mostCurrent._service.StartForeground((int) (1),(android.app.Notification)(_main_notice.getObject()));
+RDebugUtils.currentLine=3735567;
+ //BA.debugLineNum = 3735567;BA.debugLine="If IsPaused(activity_db) Then StartService(activ";
+if (anywheresoftware.b4a.keywords.Common.IsPaused(processBA,(Object)(mostCurrent._activity_db.getObject()))) { 
+anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(mostCurrent._activity_db.getObject()));};
+RDebugUtils.currentLine=3735568;
+ //BA.debugLineNum = 3735568;BA.debugLine="If IsPaused(file_manager) Then StartService(file";
+if (anywheresoftware.b4a.keywords.Common.IsPaused(processBA,(Object)(mostCurrent._file_manager.getObject()))) { 
+anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(mostCurrent._file_manager.getObject()));};
+RDebugUtils.currentLine=3735570;
+ //BA.debugLineNum = 3735570;BA.debugLine="StartActivity(camera_activity)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._camera_activity.getObject()));
-RDebugUtils.currentLine=9961479;
- //BA.debugLineNum = 9961479;BA.debugLine="End Sub";
+RDebugUtils.currentLine=3735572;
+ //BA.debugLineNum = 3735572;BA.debugLine="End Sub";
 return "";
 }
 }

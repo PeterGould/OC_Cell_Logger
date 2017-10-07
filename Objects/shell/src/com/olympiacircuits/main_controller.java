@@ -43,7 +43,7 @@ public boolean isSingleton() {
 		return pcBA;
 	}
 public static RemoteObject __c = RemoteObject.declareNull("anywheresoftware.b4a.keywords.Common");
-public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.httputils2service");
+public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
 public static RemoteObject _modrequest = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.modrequest");
 public static RemoteObject _svcmonitoring = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring");
 public static com.olympiacircuits.main _main = null;
@@ -51,7 +51,8 @@ public static com.olympiacircuits.bt_interact _bt_interact = null;
 public static com.olympiacircuits.activity_db _activity_db = null;
 public static com.olympiacircuits.file_manager _file_manager = null;
 public static com.olympiacircuits.camera_activity _camera_activity = null;
+public static com.olympiacircuits.setup _setup = null;
   public Object[] GetGlobals() {
-		return new Object[] {"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",main_controller.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"modRequest",main_controller.mostCurrent._modrequest,"Service",main_controller.mostCurrent._service,"svcMonitoring",main_controller.mostCurrent._svcmonitoring};
+		return new Object[] {"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",main_controller.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"modRequest",main_controller.mostCurrent._modrequest,"Service",main_controller.mostCurrent._service,"setup",Debug.moduleToString(com.olympiacircuits.setup.class),"svcMonitoring",main_controller.mostCurrent._svcmonitoring};
 }
 }

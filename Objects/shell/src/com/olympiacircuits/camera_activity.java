@@ -55,7 +55,7 @@ public boolean isSingleton() {
 public static RemoteObject __c = RemoteObject.declareNull("anywheresoftware.b4a.keywords.Common");
 public static RemoteObject _a_camera = RemoteObject.declareNull("com.olympiacircuits.auto_camera");
 public static RemoteObject _pic_panel = RemoteObject.declareNull("anywheresoftware.b4a.objects.PanelWrapper");
-public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.httputils2service");
+public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
 public static RemoteObject _modrequest = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.modrequest");
 public static RemoteObject _svcmonitoring = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring");
 public static com.olympiacircuits.main _main = null;
@@ -63,7 +63,8 @@ public static com.olympiacircuits.bt_interact _bt_interact = null;
 public static com.olympiacircuits.activity_db _activity_db = null;
 public static com.olympiacircuits.file_manager _file_manager = null;
 public static com.olympiacircuits.main_controller _main_controller = null;
+public static com.olympiacircuits.setup _setup = null;
   public Object[] GetGlobals() {
-		return new Object[] {"a_camera",camera_activity.mostCurrent._a_camera,"Activity",camera_activity.mostCurrent._activity,"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",camera_activity.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",camera_activity.mostCurrent._modrequest,"pic_panel",camera_activity.mostCurrent._pic_panel,"svcMonitoring",camera_activity.mostCurrent._svcmonitoring};
+		return new Object[] {"a_camera",camera_activity.mostCurrent._a_camera,"Activity",camera_activity.mostCurrent._activity,"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"file_manager",Debug.moduleToString(com.olympiacircuits.file_manager.class),"HttpUtils2Service",camera_activity.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",camera_activity.mostCurrent._modrequest,"pic_panel",camera_activity.mostCurrent._pic_panel,"setup",Debug.moduleToString(com.olympiacircuits.setup.class),"svcMonitoring",camera_activity.mostCurrent._svcmonitoring};
 }
 }

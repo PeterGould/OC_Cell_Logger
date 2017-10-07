@@ -30,6 +30,8 @@ Sub Process_Globals
 	Dim timer_wait As Int
 	Dim data_buffer As String = ""
 	Dim conv As ByteConverter
+	Dim at_active As Boolean = False
+	Dim soda_stage As Int = 0
 End Sub
 
 Sub Service_Create
@@ -68,15 +70,16 @@ End Sub
 '######################################################################################
 '####BLE Communication Subs
 Sub scan_bt_devices
+	'clear device list to prepare for new scan
+	listBLEDevicesName.Clear
+	listBLEDevicesMacAdress.Clear
 	scan_status = 0
 	Manager.StopRssiTracking	
   	Manager.Disconnect
 	ConnectState = cstateDisconnect	
 	Manager.Scan(3000, Null)		
-	listBLEDevicesName.clear	
-	listBLEDevicesMacAdress.clear	
 	Log("Searching devices...")	
-	ToastMessageShow( "Searching devices..." ,True)
+	
 End Sub
 
 
@@ -98,6 +101,7 @@ Sub connect_a_device(device_position As Int)
 	'set first_read for the download timer
 	first_read = True
 	'The connection event will launch the next actions.  Set timer in case connection fails
+	timer_switch = "try_connect"
 	ble_timer.Enabled = True
 End Sub
 
@@ -110,13 +114,16 @@ End Sub
 Sub bt_finish
 	'turn off bluetooth to save power
 	If btAdmin.Enable = True Then btAdmin.Disable
-	Service_Destroy
+	StopService("")
 End Sub
 '###################################################################
 '###BLE Event subs
 Sub ble_DeviceFound (Name As String, MacAddress As String)
+	'sometimes sends a NULL value
+	If Name = Null Then Return
 	'only look for devices with the SODA prefix
 	Log("found BT " & Name)
+	Name = Name.ToUpperCase ' makes it case insensitive
    If Name.SubString2(0,4) = "SODA" Then
 		listBLEDevicesName.Add(Name)
 		listBLEDevicesMacAdress.Add(MacAddress)
@@ -150,19 +157,24 @@ Sub ble_Connected (Services As Map)
    If ConnectState = cstatePreConnect Then
 	   	ConnectState = cstateConnect		
 	   	Log("Connected")
-	   	bleService = Services.GetValueAt(2)							
+	   	bleService = Services.GetValueAt(2)						
 	   	readCharacteristic = bleService.GetCharacteristics.GetValueAt(0)
 	   	Manager.ReadCharacteristic(readCharacteristic)
 	   	Manager.SetCharacteristicNotification(readCharacteristic, True)	
 	   	writeCharacteristic = bleService.GetCharacteristics.GetValueAt(0)  
+		For k = 0 To bleService.GetCharacteristics.Size - 1
+			Log(k)
+			Log(bleService.GetCharacteristics.GetKeyAt(k))
+			Log(bleService.GetCharacteristics.GetValueAt(k))
+		Next
 		'start a timer so that we move on if nothing happens within 1 second
 		timer_switch = "device_timeout"
-		ble_timer.Interval = 1000
+		ble_timer.Interval = 2000
 		connection_tries = 0
 		ble_timer.Enabled = True
-		'send the signal to start bluetooth download
-		writeCharacteristic.SetStringValue("T")
-		Manager.WriteCharacteristic(writeCharacteristic)
+		'send the signals to turn on bluetooth
+		soda_stage = 0
+		soda_switch 'sub routine that handles setup
 	End If	   
 End Sub
 
@@ -175,19 +187,29 @@ End Sub
 
 'read from BT stream
 Sub ble_CharacteristicChanged (Characteristic As BleCharacteristic)
+	If Characteristic = writeCharacteristic Then Log("write") 'Don't do anything when write changes
+	If Characteristic = readCharacteristic Then Log("read") 'Don't do anything when write changes
+	If Characteristic = readCharacteristic And Characteristic = writeCharacteristic Then Log("both")
+	Dim capture As String = ""
+	Dim  capture_byte() As Byte = readCharacteristic.GetValue
+	capture = conv.StringFromBytes(capture_byte,"UTF8")
+	Log(capture)
+	'ignore echoes to AT commands
+	If at_active = True Then 
+		at_active = False
+		soda_stage = soda_stage + 1 'acknowledge a reply but don't process it
+		soda_switch 'call the next step
+		Return
+	End If
 	'set the timer.  Will move on if nothing is read within 2 seconds
 	If first_read = True Then
 		ble_timer.Enabled = False
 		timer_switch = "bt_download"
 	End If
-	'reset timer to give another 200 ms
+	'reset timer to give another 500 ms
 	ble_timer.Enabled = False
 	ble_timer.Interval = 500
 	ble_timer.Enabled = True
-	Dim capture As String = ""
-	Dim  capture_byte() As Byte = readCharacteristic.GetValue
-	capture = conv.StringFromBytes(capture_byte,"UTF8")
-	Log(capture)
 	data_buffer = data_buffer & capture
 	'send indication for next set
 	writeCharacteristic.SetStringValue("!")
@@ -203,6 +225,7 @@ Sub ble_timer_Tick
 	'start process to find device
 	If timer_switch = "find_devices" Then
 		scan_bt_devices
+		Return
 	End If
 	
 	'retry connect
@@ -212,6 +235,7 @@ Sub ble_timer_Tick
 			device_n = device_n + 1
 		End If
 		ble_timer.Enabled = True  're-enable timer
+		connection_tries = 0
 		connect_a_device(device_n)
 	End If
 	
@@ -219,23 +243,31 @@ Sub ble_timer_Tick
 	If timer_switch = "device_timeout" Then
 			'give it a few more shots
 		If connection_tries < 2 Then
-				writeCharacteristic.SetStringValue("T")
-				Manager.WriteCharacteristic(writeCharacteristic)	
-				connection_tries = connection_tries + 1
-				ble_timer.Enabled = True
-			Else 'OK, time to give up and try next device
+			'try current step of the soda_switch	
+			connection_tries = connection_tries + 1
+			ble_timer.Enabled = True
+			soda_switch
+		Else 'OK, time to give up and try next device
 			Log("deviced timed out; trying next device")
 			device_n = device_n + 1
+			connection_tries = 0
 			connect_a_device(device_n)
 		End If
 	End If
 	
 	'interval between download packets
 	If timer_switch = "bt_download" Then
-		'turn off notifications since download must be finished
-		Manager.SetCharacteristicNotification(readCharacteristic, False)	
-		'disconnect from device
-		Manager.Disconnect
+		'start timer to finish up, in mean time turn off SODA
+		timer_switch = "DL_finished"
+		ble_timer.Interval = 5000
+		ble_timer.Enabled = True
+		'turn off SODA
+		soda_stage = 10
+		soda_switch
+	End If
+	
+	'finish up the download and try the next
+	If timer_switch = "DL_finished" Then
 		'save file
 		write_bt_file
 		'try next device
@@ -254,4 +286,51 @@ Sub write_bt_file
 	filename = filename & ".csv"
 	File.WriteString(file_manager.current_dir,filename,data_buffer)
 	data_buffer = ""
+End Sub
+
+'Turn the SODA on using AT commands and responses
+Sub soda_switch()
+		Dim bt_power As String = "B"
+		Dim bt_indicator As String = "8"
+		at_active = True
+		Log("Entering soda_switch on soda_stage = " & soda_stage)
+		'Connect SODA to BT
+		If soda_stage = 0 Then 'send the first command.  The reply will trigger the next command
+			Log("Attempting to start SODA")
+			writeCharacteristic.SetStringValue("AT+PIO" & bt_indicator & "1") 'set indicator to high
+			Manager.WriteCharacteristic(writeCharacteristic)
+			Return
+		End If
+		
+		If soda_stage = 1 Then
+			writeCharacteristic.SetStringValue("AT+PIO" & bt_power & "1") 'turn on SODA
+			Manager.WriteCharacteristic(writeCharacteristic)
+			Return
+		End If
+		
+		If soda_stage = 2 Then
+			at_active = False 'end the AT activity
+			writeCharacteristic.SetStringValue("!") 'Signal the SODA to begin download
+			Manager.WriteCharacteristic(writeCharacteristic)
+			Return
+		End If
+		
+		'disconnect SODA from BT
+		If soda_stage = 10 Then
+			writeCharacteristic.SetStringValue("AT+PIO" & bt_indicator & "0") 'turn indicator to low
+			Manager.WriteCharacteristic(writeCharacteristic)
+			Return
+		End If
+		
+		If soda_stage = 11 Then
+			writeCharacteristic.SetStringValue("AT+PIO" & bt_power & "0") 'turn power off
+			Manager.WriteCharacteristic(writeCharacteristic)
+			Return
+		End If
+
+		If soda_stage = 12 Then 'final clean up
+			Manager.Disconnect
+			at_active = False
+		End If
+		
 End Sub

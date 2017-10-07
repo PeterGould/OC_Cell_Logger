@@ -320,7 +320,7 @@ public static void initializeProcessGlobals() {
 public anywheresoftware.b4a.keywords.Common __c = null;
 public com.olympiacircuits.auto_camera _a_camera = null;
 public anywheresoftware.b4a.objects.PanelWrapper _pic_panel = null;
-public anywheresoftware.b4a.samples.gmailcontacts.httputils2service _httputils2service = null;
+public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public anywheresoftware.b4a.samples.gmailcontacts.modrequest _modrequest = null;
 public anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring _svcmonitoring = null;
 public com.olympiacircuits.main _main = null;
@@ -328,48 +328,49 @@ public com.olympiacircuits.bt_interact _bt_interact = null;
 public com.olympiacircuits.activity_db _activity_db = null;
 public com.olympiacircuits.file_manager _file_manager = null;
 public com.olympiacircuits.main_controller _main_controller = null;
+public com.olympiacircuits.setup _setup = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
 RDebugUtils.currentModule="camera_activity";
-RDebugUtils.currentLine=8847360;
- //BA.debugLineNum = 8847360;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
-RDebugUtils.currentLine=8847361;
- //BA.debugLineNum = 8847361;BA.debugLine="pic_panel.Initialize(\"pic_panel\")";
+RDebugUtils.currentLine=3342336;
+ //BA.debugLineNum = 3342336;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=3342337;
+ //BA.debugLineNum = 3342337;BA.debugLine="pic_panel.Initialize(\"pic_panel\")";
 mostCurrent._pic_panel.Initialize(mostCurrent.activityBA,"pic_panel");
-RDebugUtils.currentLine=8847362;
- //BA.debugLineNum = 8847362;BA.debugLine="Activity.AddView(pic_panel,1%x,1%y,90%x,90%y)";
+RDebugUtils.currentLine=3342338;
+ //BA.debugLineNum = 3342338;BA.debugLine="Activity.AddView(pic_panel,1%x,1%y,90%x,90%y)";
 mostCurrent._activity.AddView((android.view.View)(mostCurrent._pic_panel.getObject()),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (1),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (1),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (90),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (90),mostCurrent.activityBA));
-RDebugUtils.currentLine=8847363;
- //BA.debugLineNum = 8847363;BA.debugLine="a_camera.Initialize(pic_panel,CallSub(file_manage";
+RDebugUtils.currentLine=3342339;
+ //BA.debugLineNum = 3342339;BA.debugLine="a_camera.Initialize(pic_panel,CallSub(file_manage";
 mostCurrent._a_camera._initialize(null,mostCurrent.activityBA,mostCurrent._pic_panel,BA.ObjectToString(anywheresoftware.b4a.keywords.Common.CallSubNew(mostCurrent.activityBA,(Object)(mostCurrent._file_manager.getObject()),"get_current_dir")),"take_picture");
-RDebugUtils.currentLine=8847364;
- //BA.debugLineNum = 8847364;BA.debugLine="End Sub";
+RDebugUtils.currentLine=3342340;
+ //BA.debugLineNum = 3342340;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
 RDebugUtils.currentModule="camera_activity";
-RDebugUtils.currentLine=8978432;
- //BA.debugLineNum = 8978432;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
-RDebugUtils.currentLine=8978434;
- //BA.debugLineNum = 8978434;BA.debugLine="End Sub";
+RDebugUtils.currentLine=3473408;
+ //BA.debugLineNum = 3473408;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+RDebugUtils.currentLine=3473410;
+ //BA.debugLineNum = 3473410;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
 RDebugUtils.currentModule="camera_activity";
-RDebugUtils.currentLine=8912896;
- //BA.debugLineNum = 8912896;BA.debugLine="Sub Activity_Resume";
-RDebugUtils.currentLine=8912898;
- //BA.debugLineNum = 8912898;BA.debugLine="End Sub";
+RDebugUtils.currentLine=3407872;
+ //BA.debugLineNum = 3407872;BA.debugLine="Sub Activity_Resume";
+RDebugUtils.currentLine=3407874;
+ //BA.debugLineNum = 3407874;BA.debugLine="End Sub";
 return "";
 }
 public static String  _close_self() throws Exception{
 RDebugUtils.currentModule="camera_activity";
-RDebugUtils.currentLine=9764864;
- //BA.debugLineNum = 9764864;BA.debugLine="Sub close_self";
-RDebugUtils.currentLine=9764865;
- //BA.debugLineNum = 9764865;BA.debugLine="Activity.Finish";
+RDebugUtils.currentLine=3538944;
+ //BA.debugLineNum = 3538944;BA.debugLine="Sub close_self";
+RDebugUtils.currentLine=3538945;
+ //BA.debugLineNum = 3538945;BA.debugLine="Activity.Finish";
 mostCurrent._activity.Finish();
-RDebugUtils.currentLine=9764866;
- //BA.debugLineNum = 9764866;BA.debugLine="End Sub";
+RDebugUtils.currentLine=3538946;
+ //BA.debugLineNum = 3538946;BA.debugLine="End Sub";
 return "";
 }
 }

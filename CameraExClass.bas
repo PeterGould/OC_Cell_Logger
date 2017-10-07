@@ -30,7 +30,6 @@ Public Sub Initialize (Panel1 As Panel, FrontCamera As Boolean, TargetModule As 
 		Front = Not(Front) 'try different camera
 		id = FindCamera(Front).id
 		If id = -1 Then
-			ToastMessageShow("No camera found.", True)
 			Return
 		End If
 	End If
@@ -143,7 +142,6 @@ Public Sub CommitParameters
 		r.target = nativeCam
 		r.RunMethod4("setParameters", Array As Object(parameters), Array As String("android.hardware.Camera$Parameters"))
 	Catch
-		ToastMessageShow("Error setting parameters.", True)
 		Log(LastException)
 	End Try
 End Sub

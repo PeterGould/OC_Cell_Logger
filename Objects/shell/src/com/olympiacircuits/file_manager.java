@@ -49,7 +49,11 @@ public static RemoteObject _current_dir = RemoteObject.createImmutable("");
 public static RemoteObject _clientid = RemoteObject.createImmutable("");
 public static RemoteObject _clientsecret = RemoteObject.createImmutable("");
 public static RemoteObject _cls_drive = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.libgoogledrive");
-public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.httputils2service");
+public static RemoteObject _my_wifi = RemoteObject.declareNull("wifi.MLwifi");
+public static RemoteObject _file_timer = RemoteObject.declareNull("anywheresoftware.b4a.objects.Timer");
+public static RemoteObject _timer_switch = RemoteObject.createImmutable("");
+public static RemoteObject _stage_file = RemoteObject.declareNull("anywheresoftware.b4a.objects.collections.List");
+public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
 public static RemoteObject _modrequest = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.modrequest");
 public static RemoteObject _svcmonitoring = RemoteObject.declareNull("anywheresoftware.b4a.samples.gmailcontacts.svcmonitoring");
 public static com.olympiacircuits.main _main = null;
@@ -57,7 +61,8 @@ public static com.olympiacircuits.bt_interact _bt_interact = null;
 public static com.olympiacircuits.activity_db _activity_db = null;
 public static com.olympiacircuits.camera_activity _camera_activity = null;
 public static com.olympiacircuits.main_controller _main_controller = null;
+public static com.olympiacircuits.setup _setup = null;
   public Object[] GetGlobals() {
-		return new Object[] {"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"clientId",file_manager._clientid,"clientSecret",file_manager._clientsecret,"cls_drive",file_manager._cls_drive,"current_dir",file_manager._current_dir,"HttpUtils2Service",file_manager.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",file_manager.mostCurrent._modrequest,"root_dir",file_manager._root_dir,"Service",file_manager.mostCurrent._service,"sub_dir",file_manager._sub_dir,"svcMonitoring",file_manager.mostCurrent._svcmonitoring};
+		return new Object[] {"activity_db",Debug.moduleToString(com.olympiacircuits.activity_db.class),"bt_interact",Debug.moduleToString(com.olympiacircuits.bt_interact.class),"camera_activity",Debug.moduleToString(com.olympiacircuits.camera_activity.class),"clientId",file_manager._clientid,"clientSecret",file_manager._clientsecret,"cls_drive",file_manager._cls_drive,"current_dir",file_manager._current_dir,"file_timer",file_manager._file_timer,"HttpUtils2Service",file_manager.mostCurrent._httputils2service,"Main",Debug.moduleToString(com.olympiacircuits.main.class),"main_controller",Debug.moduleToString(com.olympiacircuits.main_controller.class),"modRequest",file_manager.mostCurrent._modrequest,"my_wifi",file_manager._my_wifi,"root_dir",file_manager._root_dir,"Service",file_manager.mostCurrent._service,"setup",Debug.moduleToString(com.olympiacircuits.setup.class),"stage_file",file_manager._stage_file,"sub_dir",file_manager._sub_dir,"svcMonitoring",file_manager.mostCurrent._svcmonitoring,"timer_switch",file_manager._timer_switch};
 }
 }
